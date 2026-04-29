@@ -1,121 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme:dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GroovePeek detects the BPM of any song playing on YouTube or Spotify, instantly in your browser. No setup, no login." />
   <title>GroovePeek — Know the BPM of any song, instantly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header>
-  <img src="logo.svg" alt="GroovePeek logo" style="width:80px;height:80px;margin-bottom:20px;" />
-  <div class="logo">Groove<span>Peek</span></div>
-  <p class="tagline">Ever heard a song and wondered — how fast is this beat? GroovePeek tells you, in seconds, right in your browser.</p>
-  <a class="cta" href="https://chrome.google.com/webstore" target="_blank" rel="noopener">
-    Add to Chrome — it's free
-  </a>
-</header>
-
-<main>
-
-  <div class="hero-shot">
-    <img src="store-assets/screenshot-hero.png" alt="GroovePeek popup showing 85.5 BPM with Riding the Groove label" />
-  </div>
-
-  <section>
-    <h2>Everything you need, nothing you don't</h2>
-    <div class="features">
-      <div class="feature">
-        <div class="icon">🎵</div>
-        <strong>Live BPM detection</strong>
-        <p>Play a song on YouTube, YouTube Music, or Spotify. Click the extension. See the tempo — no setup, no configuration.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">📊</div>
-        <strong>Confidence meter</strong>
-        <p>Know how sure the reading is. GroovePeek shows a beat-clarity label and BPM range as it locks onto the groove.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">💡</div>
-        <strong>Beat indicator</strong>
-        <p>A subtle pulse syncs to the detected tempo so you can feel it visually — handy for DJs, producers, and dancers.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">👆</div>
-        <strong>Tap Tempo</strong>
-        <p>Not sure about the reading? Tap the button along with the beat and get your own manual measurement side by side.</p>
-      </div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">
+        <img src="logo.svg" alt="" width="28" height="28">
+        <span>Groove<em>Peek</em></span>
+      </a>
+      <a class="nav-cta" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
+        Add to Chrome
+      </a>
     </div>
-  </section>
+  </nav>
 
-  <section>
-    <h2>You'll always know how confident the reading is</h2>
-    <div class="states">
-      <div class="state">
-        <img src="store-assets/state-tricky.png" alt="GroovePeek popup showing This One's Tricky state" />
-        <div class="state-caption">
-          <strong>This one's tricky</strong>
-          <span>Still working on it</span>
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1400 120" preserveAspectRatio="none" fill="none">
+        <polyline class="hero-wave-line" points="0,60 200,60 340,18 480,102 620,18 760,102 900,60 1400,60" />
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Chrome Extension
+      </div>
+      <h1>Know the&nbsp;BPM.<br>Instantly.</h1>
+      <p class="hero-lead">Play a song on YouTube or Spotify. Click the extension. See the tempo in seconds — no setup, no login, no nonsense.</p>
+      <a class="btn-primary" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
+        Add to Chrome — it's free
+      </a>
+    </div>
+
+    <div class="hero-demo">
+      <div class="demo-card">
+        <div class="demo-brand">
+          <svg width="22" height="15" viewBox="0 0 22 15" fill="none" aria-hidden="true">
+            <polyline points="0,7.5 4.5,7.5 7,1.5 11,13.5 15,1.5 17.5,7.5 22,7.5"
+              stroke="#FF6B6B" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>GroovePeek</span>
+        </div>
+        <div class="demo-track-name">Bohemian Rhapsody — Queen</div>
+        <div class="demo-status">
+          <div class="demo-wave" aria-hidden="true">
+            <span class="dw"></span><span class="dw"></span><span class="dw"></span>
+            <span class="dw"></span><span class="dw"></span><span class="dw"></span>
+            <span class="dw"></span>
+          </div>
+          <span class="demo-status-text">Listening</span>
+        </div>
+        <div class="demo-bpm-row">
+          <div class="demo-bpm" id="demoBpm">---</div>
+          <div class="demo-bpm-unit">BPM</div>
+        </div>
+        <div class="demo-groove-label" id="demoLabel">Finding the groove…</div>
+        <div class="demo-range" id="demoRange"></div>
+        <div class="demo-confidence-bar">
+          <div class="demo-confidence-fill" id="demoFill"></div>
+        </div>
+        <div class="demo-tap">
+          <button class="demo-tap-btn" tabindex="-1" aria-hidden="true">TAP</button>
         </div>
       </div>
-      <div class="state">
-        <img src="store-assets/state-warming.png" alt="GroovePeek popup showing Getting Warmer state" />
-        <div class="state-caption">
-          <strong>Getting warmer</strong>
-          <span>Estimate stabilizing</span>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="screenshot-section">
+      <div class="screenshot-halo"></div>
+      <img class="screenshot-img" src="store-assets/screenshot-hero.png" alt="GroovePeek popup showing 85.5 BPM with Riding the Groove label" />
+    </section>
+
+    <section class="features-section">
+      <div class="section-label">Features</div>
+      <h2 class="section-heading">Everything you need,<br>nothing you&nbsp;don't</h2>
+      <div class="features-grid">
+        <div class="feature-card f-wide">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M2 12h2.5l2-8 4 16 4-16 2 8H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Live BPM detection</strong>
+            <p>Play a song on YouTube, YouTube Music, or Spotify. Click the extension. See the tempo — no setup, no configuration.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <strong>Confidence meter</strong>
+          <p>Know how sure the reading is. GroovePeek shows a beat-clarity label and BPM range as it locks onto the groove.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" fill="currentColor"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <strong>Beat indicator</strong>
+          <p>A subtle pulse syncs to the detected tempo so you can feel it visually — handy for DJs, producers, and dancers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="3" width="8" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+              <rect x="14" y="3" width="8" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <strong>Tap Tempo</strong>
+          <p>Not sure about the reading? Tap along with the beat and get your own manual measurement side by side.</p>
         </div>
       </div>
-      <div class="state">
-        <img src="store-assets/state-locked.png" alt="GroovePeek popup showing Riding the Groove locked state" />
-        <div class="state-caption">
-          <strong>Riding the groove</strong>
-          <span>Stable, confident reading</span>
+    </section>
+
+    <section class="states-section">
+      <div class="section-label">Confidence states</div>
+      <h2 class="section-heading">You'll always know<br>how sure it is</h2>
+      <div class="states-grid">
+        <div class="state-card">
+          <img src="store-assets/state-tricky.png" alt="GroovePeek popup showing This One's Tricky state" />
+          <div class="state-caption">
+            <strong>This one's tricky</strong>
+            <span>Still working on it</span>
+          </div>
+        </div>
+        <div class="state-card state-mid">
+          <img src="store-assets/state-warming.png" alt="GroovePeek popup showing Getting Warmer state" />
+          <div class="state-caption">
+            <strong>Getting warmer</strong>
+            <span>Estimate stabilizing</span>
+          </div>
+        </div>
+        <div class="state-card state-locked">
+          <img src="store-assets/state-locked.png" alt="GroovePeek popup showing Riding the Groove state" />
+          <div class="state-caption">
+            <strong>Riding the groove</strong>
+            <span>Stable, confident reading</span>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="audience-section">
+      <div class="section-label">Who it's for</div>
+      <h2 class="section-heading">Made for anyone<br>who feels the beat</h2>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-num">01</div>
+          <strong>DJs &amp; producers</strong>
+          <p>Quickly identify the BPM of any track before adding it to a set or sampling it in a project.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">02</div>
+          <strong>Dancers &amp; choreographers</strong>
+          <p>Pin down the exact tempo of a song before building a routine around it.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">03</div>
+          <strong>Musicians</strong>
+          <p>Match your practice metronome to a reference track without leaving the browser.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">04</div>
+          <strong>The curious</strong>
+          <p>Because sometimes you just want to know how fast that song goes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy-section">
+      <div class="privacy-card">
+        <div class="privacy-shield" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="privacy-heading">Your privacy, protected</h2>
+          <p>GroovePeek works entirely inside your browser. It never records your audio, never sends data to any server, and never tracks anything about you or your listening habits. The only thing it remembers locally is whether you prefer light or dark mode.</p>
+          <a href="privacy.html" class="privacy-link">Read the full privacy policy →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-wave" aria-hidden="true">
+        <svg viewBox="0 0 800 60" preserveAspectRatio="none" fill="none">
+          <polyline class="cta-wave-line" points="0,30 100,30 160,8 220,52 280,8 340,52 400,30 800,30" />
+        </svg>
+      </div>
+      <h2 class="cta-heading">What's this beat?</h2>
+      <p class="cta-sub">Install GroovePeek and find out in seconds.</p>
+      <a class="btn-primary" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
+        Add to Chrome — it's free
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.svg" alt="" width="22" height="22">
+        <span>GroovePeek</span>
+      </div>
+      <a href="privacy.html">Privacy Policy</a>
     </div>
-  </section>
+  </footer>
 
-  <section>
-    <h2>Who is it for?</h2>
-    <div class="features">
-      <div class="feature">
-        <div class="icon">🎧</div>
-        <strong>DJs &amp; producers</strong>
-        <p>Quickly identify the BPM of any track before adding it to a set or sampling it in a project.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">💃</div>
-        <strong>Dancers &amp; choreographers</strong>
-        <p>Pin down the exact tempo of a song before building a routine around it.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🎸</div>
-        <strong>Musicians</strong>
-        <p>Match your practice metronome to a reference track without leaving the browser.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🤔</div>
-        <strong>The curious</strong>
-        <p>Because sometimes you just want to know how fast that song goes.</p>
-      </div>
-    </div>
-  </section>
+  <script>
+    (function () {
+      var bpmEl = document.getElementById('demoBpm');
+      var labelEl = document.getElementById('demoLabel');
+      var fillEl = document.getElementById('demoFill');
+      var rangeEl = document.getElementById('demoRange');
+      if (!bpmEl) return;
 
-  <section>
-    <h2>Your privacy matters</h2>
-    <div class="privacy-note">
-      <p>GroovePeek works entirely inside your browser. It never records your audio, never sends data to any server, and never tracks anything about you or your listening habits.</p>
-      <p>The only thing it remembers locally is whether you prefer light or dark mode.</p>
-      <p><a href="privacy.html">Read the full privacy policy →</a></p>
-    </div>
-  </section>
+      var CORAL = '#FF6B6B';
+      var AMBER = '#FFC107';
+      var GREEN = '#4ADE80';
 
-</main>
+      var steps = [
+        { bpm: null, label: 'Finding the groove…', conf: 0.08, color: CORAL,  range: '',          wait: 1400 },
+        { bpm: 71,   label: "This one's tricky",        conf: 0.28, color: CORAL,  range: '',          wait: 1100 },
+        { bpm: 79,   label: 'Getting warmer',           conf: 0.54, color: AMBER,  range: '',          wait: 950  },
+        { bpm: 82,   label: 'Getting warmer',           conf: 0.72, color: AMBER,  range: '79–82 BPM', wait: 850 },
+        { bpm: 84,   label: 'Riding the groove ✓', conf: 0.91, color: GREEN,  range: '80–84 BPM', wait: 1600 },
+        { bpm: 84,   label: 'Riding the groove ✓', conf: 0.95, color: GREEN,  range: '80–84 BPM', wait: 3200 },
+      ];
 
-<footer>
-  <p><a href="privacy.html">Privacy Policy</a></p>
-</footer>
+      var idx = 0;
+
+      function tick() {
+        var s = steps[idx];
+        bpmEl.textContent = s.bpm ? String(s.bpm) : '---';
+        bpmEl.style.color = s.bpm && s.conf > 0.85 ? GREEN : '';
+        labelEl.textContent = s.label;
+        labelEl.style.color = s.color;
+        fillEl.style.width = (s.conf * 100) + '%';
+        fillEl.style.background = s.conf > 0.85
+          ? 'linear-gradient(90deg,' + GREEN + ',#22c55e)'
+          : s.conf > 0.5
+            ? 'linear-gradient(90deg,' + AMBER + ',#f59e0b)'
+            : 'linear-gradient(90deg,' + CORAL + ',#f87171)';
+        rangeEl.textContent = s.range;
+        idx = (idx + 1) % steps.length;
+        if (idx === 0) {
+          setTimeout(function () { setTimeout(tick, 200); }, 800);
+        } else {
+          setTimeout(tick, s.wait);
+        }
+      }
+
+      setTimeout(tick, 700);
+    })();
+  </script>
 
 </body>
 </html>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GroovePeek detects the BPM of any song playing on YouTube or Spotify, instantly in your browser. No setup, no login." />
+  <meta name="description" content="GroovePeek detects the BPM of any song playing on YouTube, YouTube Music, or Spotify — live in your browser. Confidence label, visual BPM range bar, Tap Tempo. No setup, no login." />
   <title>GroovePeek — Know the BPM of any song, instantly</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -36,6 +36,7 @@
       <div class="hero-eyebrow">
         <span class="eyebrow-dot"></span>
         Chrome Extension
+        <span class="eyebrow-version">v1.1.0</span>
       </div>
       <h1>Know the&nbsp;BPM.<br>Instantly.</h1>
       <p class="hero-lead">Play a song on YouTube or Spotify. Click the extension. See the tempo in seconds — no setup, no login, no nonsense.</p>
@@ -46,34 +47,57 @@
 
     <div class="hero-demo">
       <div class="demo-card">
+        <!-- Theme toggle -->
+        <button class="demo-theme-btn" tabindex="-1" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <!-- Brand -->
         <div class="demo-brand">
-          <svg width="22" height="15" viewBox="0 0 22 15" fill="none" aria-hidden="true">
-            <polyline points="0,7.5 4.5,7.5 7,1.5 11,13.5 15,1.5 17.5,7.5 22,7.5"
-              stroke="#FF6B6B" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round"/>
+          <svg width="20" height="13" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+            <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span>GroovePeek</span>
         </div>
+        <!-- Track -->
         <div class="demo-track-name">Bohemian Rhapsody — Queen</div>
-        <div class="demo-status">
-          <div class="demo-wave" aria-hidden="true">
-            <span class="dw"></span><span class="dw"></span><span class="dw"></span>
-            <span class="dw"></span><span class="dw"></span><span class="dw"></span>
-            <span class="dw"></span>
-          </div>
-          <span class="demo-status-text">Listening</span>
+        <!-- Tap -->
+        <div class="demo-tap">
+          <button class="demo-tap-btn" tabindex="-1" aria-hidden="true">TAP</button>
         </div>
+        <!-- Status -->
+        <div class="demo-status-text">Listening</div>
+        <!-- Waveform -->
+        <div class="demo-wave" aria-hidden="true">
+          <span class="dw"></span><span class="dw"></span><span class="dw"></span>
+          <span class="dw"></span><span class="dw"></span><span class="dw"></span>
+          <span class="dw"></span>
+        </div>
+        <!-- BPM -->
         <div class="demo-bpm-row">
           <div class="demo-bpm" id="demoBpm">---</div>
           <div class="demo-bpm-unit">BPM</div>
         </div>
-        <div class="demo-groove-label" id="demoLabel">Finding the groove…</div>
-        <div class="demo-range" id="demoRange"></div>
-        <div class="demo-confidence-bar">
-          <div class="demo-confidence-fill" id="demoFill"></div>
-        </div>
-        <div class="demo-tap">
-          <button class="demo-tap-btn" tabindex="-1" aria-hidden="true">TAP</button>
+        <!-- Confidence row (reserved space) -->
+        <div class="demo-conf-row" id="demoConfRow"></div>
+        <!-- Label -->
+        <div class="demo-groove-label" id="demoLabel"></div>
+        <!-- Range display -->
+        <div class="demo-range-display" id="demoRangeDisplay" style="visibility:hidden">
+          <div class="demo-range-variance" id="demoVariance"></div>
+          <div class="demo-range-bar-wrap">
+            <div class="demo-range-fill" id="demoRangeFill"></div>
+            <div class="demo-range-marker" id="demoRangeMarker"></div>
+          </div>
+          <div class="demo-range-labels">
+            <span id="demoRangeMin"></span>
+            <span id="demoRangeMax"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -83,7 +107,16 @@
 
     <section class="screenshot-section">
       <div class="screenshot-halo"></div>
-      <img class="screenshot-img" src="store-assets/screenshot-hero.png" alt="GroovePeek popup showing 85.5 BPM with Riding the Groove label" />
+      <div class="screenshot-duo">
+        <div class="screenshot-item">
+          <div class="screenshot-item-label">Dark mode</div>
+          <img src="store-assets/screenshot-dark.png" alt="GroovePeek popup — 110 BPM, Riding the Groove, dark theme" />
+        </div>
+        <div class="screenshot-item">
+          <div class="screenshot-item-label">Light mode</div>
+          <img src="store-assets/screenshot-light.png" alt="GroovePeek popup — 83 BPM, Riding the Groove, light theme" />
+        </div>
+      </div>
     </section>
 
     <section class="features-section">
@@ -108,8 +141,8 @@
               <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
-          <strong>Confidence meter</strong>
-          <p>Know how sure the reading is. GroovePeek shows a beat-clarity label and BPM range as it locks onto the groove.</p>
+          <strong>Confidence meter + range bar</strong>
+          <p>Know how sure the reading is. A confidence label and live visual range bar track the tempo spread as GroovePeek locks onto the groove.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrap">
@@ -120,7 +153,7 @@
             </svg>
           </div>
           <strong>Beat indicator</strong>
-          <p>A subtle pulse syncs to the detected tempo so you can feel it visually — handy for DJs, producers, and dancers.</p>
+          <p>The waveform animation syncs live to the detected tempo — a visual heartbeat of the song, handy for DJs, producers, and dancers.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrap">
@@ -139,27 +172,145 @@
       <div class="section-label">Confidence states</div>
       <h2 class="section-heading">You'll always know<br>how sure it is</h2>
       <div class="states-grid">
+
+        <!-- State 1: This one's tricky -->
         <div class="state-card">
-          <img src="store-assets/state-tricky.png" alt="GroovePeek popup showing This One's Tricky state" />
+          <div class="ext-card">
+            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <div class="ext-brand">
+              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>GroovePeek</span>
+            </div>
+            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
+            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
+            <div class="ext-status">Listening</div>
+            <div class="ext-wave" aria-hidden="true">
+              <span class="ewb" style="height:5px;opacity:0.3"></span>
+              <span class="ewb" style="height:9px;opacity:0.5"></span>
+              <span class="ewb" style="height:6px;opacity:0.35"></span>
+              <span class="ewb" style="height:14px;opacity:0.7"></span>
+              <span class="ewb" style="height:6px;opacity:0.35"></span>
+              <span class="ewb" style="height:8px;opacity:0.45"></span>
+              <span class="ewb" style="height:4px;opacity:0.25"></span>
+            </div>
+            <div class="ext-bpm-row">
+              <div class="ext-bpm" style="opacity:0.25;letter-spacing:0.1em;font-size:36px">— — —</div>
+              <div class="ext-bpm-unit">BPM</div>
+            </div>
+            <div class="ext-label" style="color:#EA4335">This one's tricky</div>
+          </div>
           <div class="state-caption">
             <strong>This one's tricky</strong>
             <span>Still working on it</span>
           </div>
         </div>
+
+        <!-- State 2: Getting warmer -->
         <div class="state-card state-mid">
-          <img src="store-assets/state-warming.png" alt="GroovePeek popup showing Getting Warmer state" />
+          <div class="ext-card">
+            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <div class="ext-brand">
+              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>GroovePeek</span>
+            </div>
+            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
+            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
+            <div class="ext-status">Listening</div>
+            <div class="ext-wave" aria-hidden="true">
+              <span class="ewb" style="height:8px;opacity:0.45"></span>
+              <span class="ewb" style="height:16px;opacity:0.8"></span>
+              <span class="ewb" style="height:11px;opacity:0.6"></span>
+              <span class="ewb" style="height:22px;opacity:1"></span>
+              <span class="ewb" style="height:13px;opacity:0.65"></span>
+              <span class="ewb" style="height:18px;opacity:0.85"></span>
+              <span class="ewb" style="height:7px;opacity:0.4"></span>
+            </div>
+            <div class="ext-bpm-row">
+              <div class="ext-bpm" style="opacity:0.7">82</div>
+              <div class="ext-bpm-unit">BPM</div>
+            </div>
+            <div class="ext-label" style="color:#FBBC05">Getting warmer</div>
+            <div class="ext-range-variance">Loose tempo</div>
+            <div class="ext-range-bar-wrap">
+              <div class="ext-range-fill" style="width:100%"></div>
+              <div class="ext-range-marker" style="left:55%"></div>
+            </div>
+            <div class="ext-range-labels"><span>71</span><span>91</span></div>
+          </div>
           <div class="state-caption">
             <strong>Getting warmer</strong>
             <span>Estimate stabilizing</span>
           </div>
         </div>
+
+        <!-- State 3: Riding the groove -->
         <div class="state-card state-locked">
-          <img src="store-assets/state-locked.png" alt="GroovePeek popup showing Riding the Groove state" />
+          <div class="ext-card">
+            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <div class="ext-brand">
+              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>GroovePeek</span>
+            </div>
+            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
+            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
+            <div class="ext-status">Listening</div>
+            <div class="ext-wave" aria-hidden="true">
+              <span class="ewb" style="height:10px;opacity:0.55"></span>
+              <span class="ewb" style="height:20px;opacity:0.9"></span>
+              <span class="ewb" style="height:14px;opacity:0.7"></span>
+              <span class="ewb" style="height:26px;opacity:1"></span>
+              <span class="ewb" style="height:15px;opacity:0.75"></span>
+              <span class="ewb" style="height:21px;opacity:0.92"></span>
+              <span class="ewb" style="height:9px;opacity:0.5"></span>
+            </div>
+            <div class="ext-bpm-row">
+              <div class="ext-bpm">84</div>
+              <div class="ext-bpm-unit">BPM</div>
+            </div>
+            <div class="ext-label" style="color:#34A853">Riding the groove</div>
+            <div class="ext-range-variance">Fluid tempo</div>
+            <div class="ext-range-bar-wrap">
+              <div class="ext-range-fill" style="width:100%"></div>
+              <div class="ext-range-marker" style="left:100%"></div>
+            </div>
+            <div class="ext-range-labels"><span>80</span><span>84</span></div>
+          </div>
           <div class="state-caption">
             <strong>Riding the groove</strong>
             <span>Stable, confident reading</span>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -233,23 +384,27 @@
 
   <script>
     (function () {
-      var bpmEl = document.getElementById('demoBpm');
-      var labelEl = document.getElementById('demoLabel');
-      var fillEl = document.getElementById('demoFill');
-      var rangeEl = document.getElementById('demoRange');
+      var bpmEl      = document.getElementById('demoBpm');
+      var labelEl    = document.getElementById('demoLabel');
+      var varEl      = document.getElementById('demoVariance');
+      var fillEl     = document.getElementById('demoRangeFill');
+      var markerEl   = document.getElementById('demoRangeMarker');
+      var minEl      = document.getElementById('demoRangeMin');
+      var maxEl      = document.getElementById('demoRangeMax');
+      var rangeWrap  = document.getElementById('demoRangeDisplay');
       if (!bpmEl) return;
 
       var CORAL = '#FF6B6B';
-      var AMBER = '#FFC107';
-      var GREEN = '#4ADE80';
+      var AMBER = '#FBBC05';
+      var GREEN = '#34A853';
 
       var steps = [
-        { bpm: null, label: 'Finding the groove…', conf: 0.08, color: CORAL,  range: '',          wait: 1400 },
-        { bpm: 71,   label: "This one's tricky",        conf: 0.28, color: CORAL,  range: '',          wait: 1100 },
-        { bpm: 79,   label: 'Getting warmer',           conf: 0.54, color: AMBER,  range: '',          wait: 950  },
-        { bpm: 82,   label: 'Getting warmer',           conf: 0.72, color: AMBER,  range: '79–82 BPM', wait: 850 },
-        { bpm: 84,   label: 'Riding the groove ✓', conf: 0.91, color: GREEN,  range: '80–84 BPM', wait: 1600 },
-        { bpm: 84,   label: 'Riding the groove ✓', conf: 0.95, color: GREEN,  range: '80–84 BPM', wait: 3200 },
+        { bpm: null, label: 'Finding the groove…', lc: '#71717a', variance: '',            rMin: '',   rMax: '',   mPct: 100, showRange: false, wait: 1400 },
+        { bpm: 71,   label: "This one’s tricky",   lc: CORAL,     variance: '',            rMin: '',   rMax: '',   mPct: 100, showRange: false, wait: 1100 },
+        { bpm: 79,   label: 'Getting warmer',            lc: AMBER,     variance: 'Loose tempo', rMin: '71', rMax: '82', mPct: 100, showRange: true,  wait: 950  },
+        { bpm: 82,   label: 'Getting warmer',            lc: AMBER,     variance: 'Loose tempo', rMin: '71', rMax: '84', mPct: 85,  showRange: true,  wait: 850  },
+        { bpm: 84,   label: 'Riding the groove',         lc: GREEN,     variance: 'Fluid tempo', rMin: '80', rMax: '84', mPct: 100, showRange: true,  wait: 1600 },
+        { bpm: 84,   label: 'Riding the groove',         lc: GREEN,     variance: 'Fluid tempo', rMin: '80', rMax: '84', mPct: 100, showRange: true,  wait: 3200 },
       ];
 
       var idx = 0;
@@ -257,16 +412,18 @@
       function tick() {
         var s = steps[idx];
         bpmEl.textContent = s.bpm ? String(s.bpm) : '---';
-        bpmEl.style.color = s.bpm && s.conf > 0.85 ? GREEN : '';
         labelEl.textContent = s.label;
-        labelEl.style.color = s.color;
-        fillEl.style.width = (s.conf * 100) + '%';
-        fillEl.style.background = s.conf > 0.85
-          ? 'linear-gradient(90deg,' + GREEN + ',#22c55e)'
-          : s.conf > 0.5
-            ? 'linear-gradient(90deg,' + AMBER + ',#f59e0b)'
-            : 'linear-gradient(90deg,' + CORAL + ',#f87171)';
-        rangeEl.textContent = s.range;
+        labelEl.style.color = s.lc;
+        if (s.showRange) {
+          varEl.textContent = s.variance;
+          fillEl.style.width = '100%';
+          markerEl.style.left = s.mPct + '%';
+          minEl.textContent = s.rMin;
+          maxEl.textContent = s.rMax;
+          rangeWrap.style.visibility = 'visible';
+        } else {
+          rangeWrap.style.visibility = 'hidden';
+        }
         idx = (idx + 1) % steps.length;
         if (idx === 0) {
           setTimeout(function () { setTimeout(tick, 200); }, 800);

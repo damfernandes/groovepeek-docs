@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GroovePeek detects the BPM of any song playing on YouTube, YouTube Music, or Spotify — live in your browser. Confidence label, visual BPM range bar, Tap Tempo. No setup, no login." />
-  <title>GroovePeek — Know the BPM of any song, instantly</title>
+  <meta name="description" content="Two small Chrome extensions that listen to the tab you are already playing. GroovePeek reads the tempo. PitchPeek reads the tuning. Both run entirely on your device." />
+  <title>GroovePeek &amp; PitchPeek — Read the music in your browser tab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
@@ -14,332 +14,67 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="/">
+      <a class="nav-logo" href="./">
         <img src="logo.svg" alt="" width="28" height="28">
-        <span>Groove<em>Peek</em></span>
+        <span>Groove<em>Peek</em> &amp; Pitch<em>Peek</em></span>
       </a>
-      <a class="nav-cta" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
-        Add to Chrome
-      </a>
+      <div class="nav-links">
+        <a href="groovepeek.html">GroovePeek</a>
+        <a href="pitchpeek.html">PitchPeek</a>
+      </div>
     </div>
   </nav>
 
-  <section class="hero">
+  <section class="hub-hero">
     <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-wave" aria-hidden="true">
-      <svg viewBox="0 0 1400 120" preserveAspectRatio="none" fill="none">
-        <polyline class="hero-wave-line" points="0,60 200,60 340,18 480,102 620,18 760,102 900,60 1400,60" />
-      </svg>
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Two Chrome extensions
     </div>
-
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Chrome Extension
-        <span class="eyebrow-version">v1.1.0</span>
-      </div>
-      <h1>Know the&nbsp;BPM.<br>Instantly.</h1>
-      <p class="hero-lead">Play a song on YouTube or Spotify. Click the extension. See the tempo in seconds — no setup, no login, no nonsense.</p>
-      <a class="btn-primary" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
-        Add to Chrome — it's free
-      </a>
-    </div>
-
-    <div class="hero-demo">
-      <div class="demo-card">
-        <!-- Theme toggle -->
-        <button class="demo-theme-btn" tabindex="-1" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-        <!-- Brand -->
-        <div class="demo-brand">
-          <svg width="20" height="13" viewBox="0 0 24 16" fill="none" aria-hidden="true">
-            <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>GroovePeek</span>
-        </div>
-        <!-- Track -->
-        <div class="demo-track-name">Bohemian Rhapsody — Queen</div>
-        <!-- Tap -->
-        <div class="demo-tap">
-          <button class="demo-tap-btn" tabindex="-1" aria-hidden="true">TAP</button>
-        </div>
-        <!-- Status -->
-        <div class="demo-status-text">Listening</div>
-        <!-- Waveform -->
-        <div class="demo-wave" aria-hidden="true">
-          <span class="dw"></span><span class="dw"></span><span class="dw"></span>
-          <span class="dw"></span><span class="dw"></span><span class="dw"></span>
-          <span class="dw"></span>
-        </div>
-        <!-- BPM -->
-        <div class="demo-bpm-row">
-          <div class="demo-bpm" id="demoBpm">---</div>
-          <div class="demo-bpm-unit">BPM</div>
-        </div>
-        <!-- Confidence row (reserved space) -->
-        <div class="demo-conf-row" id="demoConfRow"></div>
-        <!-- Label -->
-        <div class="demo-groove-label" id="demoLabel"></div>
-        <!-- Range display -->
-        <div class="demo-range-display" id="demoRangeDisplay" style="visibility:hidden">
-          <div class="demo-range-variance" id="demoVariance"></div>
-          <div class="demo-range-bar-wrap">
-            <div class="demo-range-fill" id="demoRangeFill"></div>
-            <div class="demo-range-marker" id="demoRangeMarker"></div>
-          </div>
-          <div class="demo-range-labels">
-            <span id="demoRangeMin"></span>
-            <span id="demoRangeMax"></span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>Your browser is<br>already <em>listening</em>.</h1>
+    <p class="hub-lead">Play something on YouTube or Spotify, click an icon, get an answer in seconds. One reads the tempo. One reads the tuning. Neither sends your audio anywhere.</p>
   </section>
 
   <main>
 
-    <section class="screenshot-section">
-      <div class="screenshot-halo"></div>
-      <div class="screenshot-duo">
-        <div class="screenshot-item">
-          <div class="screenshot-item-label">Dark mode</div>
-          <img src="store-assets/screenshot-dark.png" alt="GroovePeek popup — 110 BPM, Riding the Groove, dark theme" />
-        </div>
-        <div class="screenshot-item">
-          <div class="screenshot-item-label">Light mode</div>
-          <img src="store-assets/screenshot-light.png" alt="GroovePeek popup — 83 BPM, Riding the Groove, light theme" />
+    <div class="products-grid">
+
+      <div class="product-card">
+        <h2 class="product-mark">
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none" aria-hidden="true">
+            <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Groove<em>Peek</em></span>
+        </h2>
+        <div class="product-what">How fast is this?</div>
+        <p>Reads the tempo of whatever is playing and shows it as a live BPM, with a confidence label and a range bar so you know how settled the number is. Tap along if you want to check it against your own ear.</p>
+        <img class="product-shot" src="store-assets/state-locked.png" alt="GroovePeek popup showing a settled BPM reading with a Riding the groove label" />
+        <div class="product-links">
+          <a class="btn-primary" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">Add to Chrome</a>
+          <a href="groovepeek.html">Learn more →</a>
         </div>
       </div>
-    </section>
 
-    <section class="features-section">
-      <div class="section-label">Features</div>
-      <h2 class="section-heading">Everything you need,<br>nothing you&nbsp;don't</h2>
-      <div class="features-grid">
-        <div class="feature-card f-wide">
-          <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M2 12h2.5l2-8 4 16 4-16 2 8H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <strong>Live BPM detection</strong>
-            <p>Play a song on YouTube, YouTube Music, or Spotify. Click the extension. See the tempo — no setup, no configuration.</p>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <strong>Confidence meter + range bar</strong>
-          <p>Know how sure the reading is. A confidence label and live visual range bar track the tempo spread as GroovePeek locks onto the groove.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="3" fill="currentColor"/>
-              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <strong>Beat indicator</strong>
-          <p>The waveform animation syncs live to the detected tempo — a visual heartbeat of the song, handy for DJs, producers, and dancers.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="2" y="3" width="8" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
-              <rect x="14" y="3" width="8" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </div>
-          <strong>Tap Tempo</strong>
-          <p>Not sure about the reading? Tap along with the beat and get your own manual measurement side by side.</p>
+      <div class="product-card">
+        <h2 class="product-mark">
+          <svg width="18" height="23" viewBox="0 0 28 36" fill="none" stroke="#FF6B6B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 2v12a10 10 0 0 0 20 0V2" /><path d="M14 24v10" />
+          </svg>
+          <span>Pitch<em>Peek</em></span>
+        </h2>
+        <div class="product-what">What is this tuned to?</div>
+        <p>Estimates the tuning reference a recording sits at — whether it was cut at A=440 or somewhere else — by measuring how far its tonal content drifts from the equal-tempered grid. Then it can pull the audio back to your reference so you can play along.</p>
+        <img class="product-shot" src="store-assets/pp-state-locked.png" alt="PitchPeek popup showing 442 Hz, plus 8 cents sharp, locked on" />
+        <div class="product-links">
+          <a class="btn-primary" href="pitchpeek.html">See how it works</a>
         </div>
       </div>
-    </section>
 
-    <section class="states-section">
-      <div class="section-label">Confidence states</div>
-      <h2 class="section-heading">You'll always know<br>how sure it is</h2>
-      <div class="states-grid">
-
-        <!-- State 1: This one's tricky -->
-        <div class="state-card">
-          <div class="ext-card">
-            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-            <div class="ext-brand">
-              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
-                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>GroovePeek</span>
-            </div>
-            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
-            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
-            <div class="ext-status">Listening</div>
-            <div class="ext-wave" aria-hidden="true">
-              <span class="ewb" style="height:5px;opacity:0.3"></span>
-              <span class="ewb" style="height:9px;opacity:0.5"></span>
-              <span class="ewb" style="height:6px;opacity:0.35"></span>
-              <span class="ewb" style="height:14px;opacity:0.7"></span>
-              <span class="ewb" style="height:6px;opacity:0.35"></span>
-              <span class="ewb" style="height:8px;opacity:0.45"></span>
-              <span class="ewb" style="height:4px;opacity:0.25"></span>
-            </div>
-            <div class="ext-bpm-row">
-              <div class="ext-bpm" style="opacity:0.25;letter-spacing:0.1em;font-size:36px">— — —</div>
-              <div class="ext-bpm-unit">BPM</div>
-            </div>
-            <div class="ext-label" style="color:#EA4335">This one's tricky</div>
-          </div>
-          <div class="state-caption">
-            <strong>This one's tricky</strong>
-            <span>Still working on it</span>
-          </div>
-        </div>
-
-        <!-- State 2: Getting warmer -->
-        <div class="state-card state-mid">
-          <div class="ext-card">
-            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-            <div class="ext-brand">
-              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
-                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>GroovePeek</span>
-            </div>
-            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
-            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
-            <div class="ext-status">Listening</div>
-            <div class="ext-wave" aria-hidden="true">
-              <span class="ewb" style="height:8px;opacity:0.45"></span>
-              <span class="ewb" style="height:16px;opacity:0.8"></span>
-              <span class="ewb" style="height:11px;opacity:0.6"></span>
-              <span class="ewb" style="height:22px;opacity:1"></span>
-              <span class="ewb" style="height:13px;opacity:0.65"></span>
-              <span class="ewb" style="height:18px;opacity:0.85"></span>
-              <span class="ewb" style="height:7px;opacity:0.4"></span>
-            </div>
-            <div class="ext-bpm-row">
-              <div class="ext-bpm" style="opacity:0.7">82</div>
-              <div class="ext-bpm-unit">BPM</div>
-            </div>
-            <div class="ext-label" style="color:#FBBC05">Getting warmer</div>
-            <div class="ext-range-variance">Loose tempo</div>
-            <div class="ext-range-bar-wrap">
-              <div class="ext-range-fill" style="width:100%"></div>
-              <div class="ext-range-marker" style="left:55%"></div>
-            </div>
-            <div class="ext-range-labels"><span>71</span><span>91</span></div>
-          </div>
-          <div class="state-caption">
-            <strong>Getting warmer</strong>
-            <span>Estimate stabilizing</span>
-          </div>
-        </div>
-
-        <!-- State 3: Riding the groove -->
-        <div class="state-card state-locked">
-          <div class="ext-card">
-            <button class="ext-theme-btn" aria-hidden="true" tabindex="-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-            <div class="ext-brand">
-              <svg width="16" height="11" viewBox="0 0 24 16" fill="none" aria-hidden="true">
-                <polyline points="0,8 3.5,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="3.5,8 6,2 8.5,14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="8.5,14 11,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="11,8 13,4.5 15,11.5" stroke="#FF6B6B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="15,11.5 17.5,8 24,8" stroke="#FF6B6B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>GroovePeek</span>
-            </div>
-            <div class="ext-track">casuarinaoficial — RODA DE SAMBA CA...</div>
-            <div class="ext-tap-wrap"><button class="ext-tap-btn" aria-hidden="true" tabindex="-1">TAP</button></div>
-            <div class="ext-status">Listening</div>
-            <div class="ext-wave" aria-hidden="true">
-              <span class="ewb" style="height:10px;opacity:0.55"></span>
-              <span class="ewb" style="height:20px;opacity:0.9"></span>
-              <span class="ewb" style="height:14px;opacity:0.7"></span>
-              <span class="ewb" style="height:26px;opacity:1"></span>
-              <span class="ewb" style="height:15px;opacity:0.75"></span>
-              <span class="ewb" style="height:21px;opacity:0.92"></span>
-              <span class="ewb" style="height:9px;opacity:0.5"></span>
-            </div>
-            <div class="ext-bpm-row">
-              <div class="ext-bpm">84</div>
-              <div class="ext-bpm-unit">BPM</div>
-            </div>
-            <div class="ext-label" style="color:#34A853">Riding the groove</div>
-            <div class="ext-range-variance">Fluid tempo</div>
-            <div class="ext-range-bar-wrap">
-              <div class="ext-range-fill" style="width:100%"></div>
-              <div class="ext-range-marker" style="left:100%"></div>
-            </div>
-            <div class="ext-range-labels"><span>80</span><span>84</span></div>
-          </div>
-          <div class="state-caption">
-            <strong>Riding the groove</strong>
-            <span>Stable, confident reading</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="audience-section">
-      <div class="section-label">Who it's for</div>
-      <h2 class="section-heading">Made for anyone<br>who feels the beat</h2>
-      <div class="audience-grid">
-        <div class="audience-card">
-          <div class="audience-num">01</div>
-          <strong>DJs &amp; producers</strong>
-          <p>Quickly identify the BPM of any track before adding it to a set or sampling it in a project.</p>
-        </div>
-        <div class="audience-card">
-          <div class="audience-num">02</div>
-          <strong>Dancers &amp; choreographers</strong>
-          <p>Pin down the exact tempo of a song before building a routine around it.</p>
-        </div>
-        <div class="audience-card">
-          <div class="audience-num">03</div>
-          <strong>Musicians</strong>
-          <p>Match your practice metronome to a reference track without leaving the browser.</p>
-        </div>
-        <div class="audience-card">
-          <div class="audience-num">04</div>
-          <strong>The curious</strong>
-          <p>Because sometimes you just want to know how fast that song goes.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <section class="privacy-section">
       <div class="privacy-card">
@@ -350,24 +85,12 @@
           </svg>
         </div>
         <div>
-          <h2 class="privacy-heading">Your privacy, protected</h2>
-          <p>GroovePeek works entirely inside your browser. It never records your audio, never sends data to any server, and never tracks anything about you or your listening habits. The only thing it remembers locally is whether you prefer light or dark mode.</p>
-          <a href="privacy.html" class="privacy-link">Read the full privacy policy →</a>
+          <h2 class="privacy-heading">Both handle privacy the same way</h2>
+          <p>Audio is captured from the tab, analyzed in memory, and discarded. Nothing is recorded, nothing is uploaded, and there is no analytics, telemetry, or tracking of any kind in either extension. The only things kept on your machine are small preferences — your theme, and in PitchPeek your chosen reference pitch, plus a short-lived note of any pitch correction still running.</p>
+          <a href="privacy.html" class="privacy-link">GroovePeek privacy policy →</a>
+          <a href="pitchpeek-privacy.html" class="privacy-link">PitchPeek privacy policy →</a>
         </div>
       </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="cta-wave" aria-hidden="true">
-        <svg viewBox="0 0 800 60" preserveAspectRatio="none" fill="none">
-          <polyline class="cta-wave-line" points="0,30 100,30 160,8 220,52 280,8 340,52 400,30 800,30" />
-        </svg>
-      </div>
-      <h2 class="cta-heading">What's this beat?</h2>
-      <p class="cta-sub">Install GroovePeek and find out in seconds.</p>
-      <a class="btn-primary" href="https://chromewebstore.google.com/detail/groovepeek/mmijdgikjbinbenjkfjkcbapladpjbog" target="_blank" rel="noopener">
-        Add to Chrome — it's free
-      </a>
     </section>
 
   </main>
@@ -376,65 +99,12 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="logo.svg" alt="" width="22" height="22">
-        <span>GroovePeek</span>
+        <span>GroovePeek &amp; PitchPeek</span>
       </div>
-      <a href="privacy.html">Privacy Policy</a>
+      <a href="privacy.html">GroovePeek Privacy</a>
+      <a href="pitchpeek-privacy.html">PitchPeek Privacy</a>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      var bpmEl      = document.getElementById('demoBpm');
-      var labelEl    = document.getElementById('demoLabel');
-      var varEl      = document.getElementById('demoVariance');
-      var fillEl     = document.getElementById('demoRangeFill');
-      var markerEl   = document.getElementById('demoRangeMarker');
-      var minEl      = document.getElementById('demoRangeMin');
-      var maxEl      = document.getElementById('demoRangeMax');
-      var rangeWrap  = document.getElementById('demoRangeDisplay');
-      if (!bpmEl) return;
-
-      var CORAL = '#FF6B6B';
-      var AMBER = '#FBBC05';
-      var GREEN = '#34A853';
-
-      var steps = [
-        { bpm: null, label: 'Finding the groove…', lc: '#71717a', variance: '',            rMin: '',   rMax: '',   mPct: 100, showRange: false, wait: 1400 },
-        { bpm: 71,   label: "This one’s tricky",   lc: CORAL,     variance: '',            rMin: '',   rMax: '',   mPct: 100, showRange: false, wait: 1100 },
-        { bpm: 79,   label: 'Getting warmer',            lc: AMBER,     variance: 'Loose tempo', rMin: '71', rMax: '82', mPct: 100, showRange: true,  wait: 950  },
-        { bpm: 82,   label: 'Getting warmer',            lc: AMBER,     variance: 'Loose tempo', rMin: '71', rMax: '84', mPct: 85,  showRange: true,  wait: 850  },
-        { bpm: 84,   label: 'Riding the groove',         lc: GREEN,     variance: 'Fluid tempo', rMin: '80', rMax: '84', mPct: 100, showRange: true,  wait: 1600 },
-        { bpm: 84,   label: 'Riding the groove',         lc: GREEN,     variance: 'Fluid tempo', rMin: '80', rMax: '84', mPct: 100, showRange: true,  wait: 3200 },
-      ];
-
-      var idx = 0;
-
-      function tick() {
-        var s = steps[idx];
-        bpmEl.textContent = s.bpm ? String(s.bpm) : '---';
-        labelEl.textContent = s.label;
-        labelEl.style.color = s.lc;
-        if (s.showRange) {
-          varEl.textContent = s.variance;
-          fillEl.style.width = '100%';
-          markerEl.style.left = s.mPct + '%';
-          minEl.textContent = s.rMin;
-          maxEl.textContent = s.rMax;
-          rangeWrap.style.visibility = 'visible';
-        } else {
-          rangeWrap.style.visibility = 'hidden';
-        }
-        idx = (idx + 1) % steps.length;
-        if (idx === 0) {
-          setTimeout(function () { setTimeout(tick, 200); }, 800);
-        } else {
-          setTimeout(tick, s.wait);
-        }
-      }
-
-      setTimeout(tick, 700);
-    })();
-  </script>
 
 </body>
 </html>

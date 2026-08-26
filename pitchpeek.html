@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme:dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PitchPeek estimates the tuning reference of any song playing on YouTube, YouTube Music, or Spotify — whether it was cut at A=440 or somewhere else — and can retune the tab's audio to your reference in real time. Runs entirely on your device." />
+  <title>PitchPeek — What is this recording tuned to?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="./">
+        <svg width="20" height="26" viewBox="0 0 28 36" fill="none" stroke="#FF6B6B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 2v12a10 10 0 0 0 20 0V2" /><path d="M14 24v10" />
+        </svg>
+        <span>Pitch<em>Peek</em></span>
+      </a>
+      <div class="nav-links">
+        <a href="groovepeek.html">GroovePeek</a>
+        <a href="pitchpeek.html" aria-current="page">PitchPeek</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1400 120" preserveAspectRatio="none" fill="none">
+        <polyline class="hero-wave-line" points="0,60 175,18 350,102 525,18 700,102 875,18 1050,102 1225,18 1400,60" />
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Chrome Extension
+        <span class="eyebrow-version">v1.0.0</span>
+      </div>
+      <h1>Is this really<br>at&nbsp;A=440?</h1>
+      <p class="hero-lead">Play a recording. PitchPeek listens to the tab, measures how far its tonal content sits from the equal-tempered grid, and tells you the reference pitch it settled on.</p>
+      <a class="btn-primary" href="#how">See how it works</a>
+    </div>
+
+    <img class="hero-shot" src="store-assets/pp-state-locked.png" alt="PitchPeek popup showing 442 Hz, plus 8 cents sharp, locked on" />
+  </section>
+
+  <main>
+
+    <section class="features-section" id="how">
+      <div class="section-label">What it does</div>
+      <h2 class="section-heading">A tuner for<br>recordings, not&nbsp;strings</h2>
+      <div class="features-grid">
+        <div class="feature-card f-wide">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 17a9 9 0 0 1 18 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 17L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="1.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Reads the reference pitch</strong>
+            <p>Every note in a recording is measured against the A=440 grid. PitchPeek folds those distances into one distribution, finds where the mass actually sits, and reports the reference the recording was made at. A 432 Hz upload and a 440 Hz one are far apart in those terms; finer distinctions it shows you in cents so you can judge them yourself.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12h4l2-6 4 12 2-6h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <strong>Cents, not vibes</strong>
+          <p>The needle and the cents line show direction and distance — "+8¢ sharp", "−31¢ flat", or "on the grid" when it lands where it should.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v18M7 7v10M17 7v10M3 10v4M21 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <strong>Correct to concert pitch</strong>
+          <p>Once the reading locks, one click retunes the tab's audio to your reference in real time, so you can play along without retuning your instrument. Click again to restore the original.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="8" width="18" height="8" rx="4" stroke="currentColor" stroke-width="2"/>
+              <circle cx="15" cy="12" r="2.4" fill="currentColor"/>
+            </svg>
+          </div>
+          <strong>Your reference, not ours</strong>
+          <p>Orchestra tunes to 442? Set anything from 430 to 450 Hz. Every reading — and every correction — re-baselines to it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="states-section">
+      <div class="section-label">How a reading settles</div>
+      <h2 class="section-heading">It listens first,<br>then commits</h2>
+      <div class="states-grid">
+
+        <div class="state-card state-mid">
+          <img class="state-shot" src="store-assets/pp-state-converging.png" alt="PitchPeek popup showing 440 Hz with a Getting a read label" />
+          <div class="state-caption">
+            <strong>Getting a read</strong>
+            <span>Evidence still accumulating</span>
+          </div>
+        </div>
+
+        <div class="state-card state-locked">
+          <img class="state-shot" src="store-assets/pp-state-ongrid.png" alt="PitchPeek popup showing 440 Hz, on the grid, locked on" />
+          <div class="state-caption">
+            <strong>On the grid</strong>
+            <span>Sits at your reference — nothing to correct</span>
+          </div>
+        </div>
+
+        <div class="state-card state-locked">
+          <img class="state-shot" src="store-assets/pp-state-corrected.png" alt="PitchPeek popup showing 437 Hz with the correction applied and a Restore original button" />
+          <div class="state-caption">
+            <strong>Corrected</strong>
+            <span>Audio pulled back to 440</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="section-label">Why it works this way</div>
+      <h2 class="section-heading">Tuning doesn't drift.<br>So it converges.</h2>
+      <div class="callout" style="margin-bottom:24px">
+        <strong>Detect once, not continuously</strong>
+        <p>Tempo can legitimately change across a song, so GroovePeek keeps re-reading. A recording's tuning reference doesn't — it was fixed when the record was cut. PitchPeek treats it that way: it accumulates evidence from every second of audio into one growing picture, and once enough has integrated it locks and stops moving, unless later evidence decisively contradicts it. Integrating over the whole song is also what beats the second-to-second jitter you'd get from any single window.</p>
+      </div>
+      <div class="callout">
+        <strong>How accurate is it, honestly</strong>
+        <p>The reading is content-dependent. Instruments produce overtones that don't sit on the equal-tempered grid — a fifth harmonic lands about 14 cents flat of one — so in sparse or overtone-heavy passages those partials can pull the estimate a little off the true reference. Expect roughly ±13 cents on real material, sometimes more on sparse recordings.</p>
+        <p>That's good enough to separate a 432 Hz recording from a 440 Hz one with confidence, and to answer "why does this sound flat?". Distinctions smaller than that — 440 against 442, say — sit inside the margin, so read the cents and treat them as an indication rather than a verdict. It is not a substitute for a hardware tuner on a single sustained note.</p>
+      </div>
+    </section>
+
+    <section class="audience-section">
+      <div class="section-label">Who it's for</div>
+      <h2 class="section-heading">For anyone playing<br>along with a&nbsp;recording</h2>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-num">01</div>
+          <strong>Musicians learning by ear</strong>
+          <p>Found out the hard way that the track is a semitone-ish off? Now you know by how much — and you can pull it back instead of retuning.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">02</div>
+          <strong>Classical &amp; orchestral players</strong>
+          <p>Ensembles tune to 442 or 443 as often as 440. Set your reference and read every recording against it.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">03</div>
+          <strong>Archivists &amp; collectors</strong>
+          <p>Tape transfers and old masters drift. A quick read tells you whether a rip was pitched correctly.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-num">04</div>
+          <strong>The 432 Hz curious</strong>
+          <p>Plenty of uploads claim to be retuned. This tells you whether they actually are.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy-section">
+      <div class="privacy-card">
+        <div class="privacy-shield" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="privacy-heading">Your privacy, protected</h2>
+          <p>PitchPeek analyzes the tab's audio in memory and discards it. Nothing is recorded, uploaded, or tracked. The only things kept on your machine are your theme choice and your reference pitch. Pitch correction changes what you hear in that tab, and only while you have it turned on.</p>
+          <a href="pitchpeek-privacy.html" class="privacy-link">Read the full privacy policy →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-wave" aria-hidden="true">
+        <svg viewBox="0 0 800 60" preserveAspectRatio="none" fill="none">
+          <polyline class="cta-wave-line" points="0,30 100,8 200,52 300,8 400,52 500,8 600,52 700,8 800,30" />
+        </svg>
+      </div>
+      <h2 class="cta-heading">What's this tuned to?</h2>
+      <p class="cta-sub">PitchPeek is on its way to the Chrome Web Store.</p>
+      <p class="cta-sub" style="margin-top:28px">Want the tempo instead? <a href="groovepeek.html" style="color:var(--accent)">Meet GroovePeek →</a></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg width="16" height="21" viewBox="0 0 28 36" fill="none" stroke="#FF6B6B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 2v12a10 10 0 0 0 20 0V2" /><path d="M14 24v10" />
+        </svg>
+        <span>PitchPeek</span>
+      </div>
+      <a href="./">All extensions</a>
+      <a href="pitchpeek-privacy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>

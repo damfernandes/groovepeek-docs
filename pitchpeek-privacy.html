@@ -9,7 +9,7 @@
 <body>
 
 <header style="text-align:left; padding-bottom: 40px;">
-  <a href="pitchpeek.html" style="color: var(--text-muted); font-size: 0.9rem;">← Back to PitchPeek</a>
+  <a href="pitchpeek.html" style="color: var(--text-mid); font-size: 0.9rem;">← Back to PitchPeek</a>
 </header>
 
 <main class="prose">
@@ -24,10 +24,11 @@
   <p>PitchPeek captures the audio stream from the active browser tab solely to analyze its tuning. The audio is processed in memory, used to compute a reference-pitch reading, and then discarded. It is never recorded, saved to disk, or sent anywhere outside your device.</p>
 
   <h2>Changing what you hear</h2>
-  <p>PitchPeek can optionally retune the audio of the tab you are listening to, so that a recording made at a different reference pitch lines up with yours. This happens only while you have turned the correction on, only inside that tab, and only in your own browser. It does not modify the original file or affect anyone else's playback. Turning the correction off restores the audio unchanged.</p>
+  <p>PitchPeek can optionally retune the audio of the tab you are listening to, so that a recording made at a different reference pitch lines up with yours. This happens only while you have turned the correction on, only inside that tab, and only in your own browser. It does not modify the original file or affect anyone else's playback. Turning the correction off restores the audio unchanged. Because a running correction must keep processing the audio to stay applied, closing the popup does not stop it — it stops when you turn it off, when the song changes, or when the tab is closed.</p>
 
   <h2>Local storage</h2>
   <p>Two preferences are stored locally in your browser: your theme choice (light or dark mode) and your reference pitch (the A value you want readings measured against, 440 Hz by default). Both stay on your device and are never transmitted.</p>
+  <p>Nothing else is written to disk. While a pitch correction is running, PitchPeek keeps a short-lived note of it for that tab so the correction survives closing and reopening the popup; it is discarded when the correction stops, the tab closes, or the browser restarts.</p>
 
   <h2>Permissions</h2>
   <p>PitchPeek requests the following browser permissions:</p>
@@ -35,7 +36,7 @@
     <li><strong>Tab audio capture</strong> — to access the audio stream from the tab you are listening to, and to play back the pitch-corrected version when you enable correction</li>
     <li><strong>Offscreen processing</strong> — to run the frequency analysis outside the extension's service worker, which cannot process audio itself</li>
     <li><strong>Storage</strong> — to remember your theme preference and your reference pitch between sessions</li>
-    <li><strong>Tabs</strong> — to read the title of the tab that is playing, so the reading resets when the song changes</li>
+    <li><strong>Tabs</strong> — to see the address of the active tab, so the extension only runs on YouTube, YouTube Music, and Spotify, and to read its title, so the reading resets when the song changes</li>
   </ul>
 
   <h2>Third parties</h2>

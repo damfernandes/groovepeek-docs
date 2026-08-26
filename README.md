@@ -18,8 +18,10 @@ listing, so **their paths must not change**.
 
 ## Screenshots
 
-`store-assets/` holds real captures of the shipping popups — no mockups, so the
-site cannot drift from what the extensions actually render.
+`store-assets/` holds captures of the shipping popups — real rendered UI, not
+hand-built mockups, so the chrome cannot drift from what the extensions render.
+The PitchPeek readings in them are scripted rather than measured from live audio;
+keep each scene's values self-consistent (see the note in the harness).
 
 - `screenshot-*.png`, `state-*.png` — GroovePeek
 - `pp-state-*.png` — PitchPeek

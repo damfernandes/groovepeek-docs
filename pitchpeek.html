@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PitchPeek estimates the tuning reference of any song playing on YouTube, YouTube Music, or Spotify — A=440, 442, 432 — and can retune the tab's audio to your reference in real time. Runs entirely on your device." />
+  <meta name="description" content="PitchPeek estimates the tuning reference of any song playing on YouTube, YouTube Music, or Spotify — whether it was cut at A=440 or somewhere else — and can retune the tab's audio to your reference in real time. Runs entirely on your device." />
   <title>PitchPeek — What is this recording tuned to?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="/">
+      <a class="nav-logo" href="./">
         <svg width="20" height="26" viewBox="0 0 28 36" fill="none" stroke="#FF6B6B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4 2v12a10 10 0 0 0 20 0V2" /><path d="M14 24v10" />
         </svg>
@@ -65,7 +65,7 @@
           </div>
           <div>
             <strong>Reads the reference pitch</strong>
-            <p>Every note in a recording is measured against the A=440 grid. PitchPeek folds those distances into one distribution, finds where the mass actually sits, and reports the reference the recording was made at — 440, 442, 438, 432.</p>
+            <p>Every note in a recording is measured against the A=440 grid. PitchPeek folds those distances into one distribution, finds where the mass actually sits, and reports the reference the recording was made at. A 432 Hz upload and a 440 Hz one are far apart in those terms; finer distinctions it shows you in cents so you can judge them yourself.</p>
           </div>
         </div>
         <div class="feature-card">
@@ -84,7 +84,7 @@
             </svg>
           </div>
           <strong>Correct to concert pitch</strong>
-          <p>One click retunes the tab's audio to your reference in real time, so you can play along without retuning your instrument. Click again to restore the original.</p>
+          <p>Once the reading locks, one click retunes the tab's audio to your reference in real time, so you can play along without retuning your instrument. Click again to restore the original.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon-wrap">
@@ -136,12 +136,12 @@
       <h2 class="section-heading">Tuning doesn't drift.<br>So it converges.</h2>
       <div class="callout" style="margin-bottom:24px">
         <strong>Detect once, not continuously</strong>
-        <p>Tempo can legitimately change across a song, so GroovePeek keeps re-reading. A recording's tuning reference doesn't — it was fixed when the record was cut. PitchPeek treats it that way: it accumulates evidence from every second of audio into one growing picture, and once enough has integrated it locks and stops moving. Integrating over the whole song is also what beats the second-to-second jitter you'd get from any single window.</p>
+        <p>Tempo can legitimately change across a song, so GroovePeek keeps re-reading. A recording's tuning reference doesn't — it was fixed when the record was cut. PitchPeek treats it that way: it accumulates evidence from every second of audio into one growing picture, and once enough has integrated it locks and stops moving, unless later evidence decisively contradicts it. Integrating over the whole song is also what beats the second-to-second jitter you'd get from any single window.</p>
       </div>
       <div class="callout">
         <strong>How accurate is it, honestly</strong>
         <p>The reading is content-dependent. Instruments produce overtones that don't sit on the equal-tempered grid — a fifth harmonic lands about 14 cents flat of one — so in sparse or overtone-heavy passages those partials can pull the estimate a little off the true reference. Expect roughly ±13 cents on real material, sometimes more on sparse recordings.</p>
-        <p>That's good enough to tell 432 from 440 from 442 with confidence, and to answer "why does this sound flat?". It is not a substitute for a hardware tuner on a single sustained note.</p>
+        <p>That's good enough to separate a 432 Hz recording from a 440 Hz one with confidence, and to answer "why does this sound flat?". Distinctions smaller than that — 440 against 442, say — sit inside the margin, so read the cents and treat them as an indication rather than a verdict. It is not a substitute for a hardware tuner on a single sustained note.</p>
       </div>
     </section>
 
@@ -209,7 +209,7 @@
         </svg>
         <span>PitchPeek</span>
       </div>
-      <a href="/">All extensions</a>
+      <a href="./">All extensions</a>
       <a href="pitchpeek-privacy.html">Privacy Policy</a>
     </div>
   </footer>

@@ -22,14 +22,6 @@
   --text-mid:       #A89790;
   --text-muted:     #7a6e68;
 
-  /* — Extension chrome (zinc scale, for popup mockups) — */
-  --ext-bg:     #1c1c1e;
-  --ext-border: #3f3f46;
-  --ext-hi:     #f4f4f5;
-  --ext-mid:    #a1a1aa;
-  --ext-lo:     #71717a;
-  --ext-dim:    #52525b;
-
   /* — Typography — */
   --font-display: 'Outfit', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;

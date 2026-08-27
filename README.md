@@ -13,8 +13,8 @@ Served at **https://damfernandes.github.io/groovepeek-docs/**
 - `pitchpeek-privacy.html` — PitchPeek privacy policy
 - `styles.css` — shared styles
 
-`privacy.html` and the site root are registered on the live Chrome Web Store
-listing, so **their paths must not change**.
+`privacy.html`, `pitchpeek-privacy.html`, and the site root are registered on
+the live Chrome Web Store listings, so **their paths must not change**.
 
 ## Screenshots
 

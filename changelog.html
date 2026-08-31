@@ -3,98 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Release history for the GroovePeek and PitchPeek Chrome extensions — what changed in each version, and why." />
-  <title>Changelog — GroovePeek &amp; PitchPeek</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <meta name="description" content="Release history for the GroovePeek Chrome extension." />
+  <title>Changelog — GroovePeek</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="nav-logo" href="./">
-        <img src="logo.svg" alt="" width="28" height="28">
-        <span>Groove<em>Peek</em> &amp; Pitch<em>Peek</em></span>
-      </a>
-      <div class="nav-links">
-        <a href="groovepeek.html">GroovePeek</a>
-        <a href="pitchpeek.html">PitchPeek</a>
-        <a href="changelog.html" aria-current="page">Changelog</a>
-      </div>
-    </div>
-  </nav>
+<header style="text-align:left; padding-bottom: 40px;">
+  <a href="groovepeek.html" style="color: var(--text-mid); font-size: 0.9rem;">&larr; Back to GroovePeek</a>
+</header>
 
-  <main class="prose under-nav">
+<main class="prose">
 
-    <h1>Changelog</h1>
-    <p class="updated">Both extensions are versioned independently. This page is the release history for each.</p>
+  <h1>Changelog</h1>
+  <p class="updated">GroovePeek &middot; the BPM detector</p>
 
-    <h2 id="groovepeek">GroovePeek</h2>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="release-version">1.2.0</span>
-        <span class="release-status release-pending">Pending store review</span>
-      </div>
-
-      <h3>Added</h3>
-      <ul>
-        <li><strong>&times;2 and &divide;2 buttons</strong> to fix a reading that lands an octave off. Display only — it does not change what the detector measured, and it resets with the song.</li>
-        <li>The beat pulse now locks to the song's <strong>actual beats</strong>, not just its tempo.</li>
-      </ul>
-
-      <h3>Fixed</h3>
-      <ul>
-        <li>Track changes were missed on YouTube tabs showing a notification count, like <code>(3) Song Name</code>.</li>
-      </ul>
-
-      <h3>Faster</h3>
-      <ul>
-        <li>Much cheaper analysis, and a steady 2-second update rate on any machine.</li>
-      </ul>
+  <div class="release">
+    <div class="release-head">
+      <span class="release-version">1.2.0</span>
+      <span class="release-status release-pending">Pending store review</span>
     </div>
 
-    <div class="release">
-      <div class="release-head">
-        <span class="release-version">1.1.0</span>
-        <span class="release-status">First public release</span>
-      </div>
+    <h3>Added</h3>
+    <ul>
+      <li><strong>&times;2 and &divide;2 buttons</strong> to fix a reading that lands an octave off. Display only &mdash; it does not change what the detector measured, and it resets with the song.</li>
+      <li>The beat pulse now locks to the song&rsquo;s <strong>actual beats</strong>, not just its tempo.</li>
+    </ul>
+
+    <h3>Fixed</h3>
+    <ul>
+      <li>Track changes were missed on YouTube tabs showing a notification count, like <code>(3) Song Name</code>.</li>
+    </ul>
+
+    <h3>Faster</h3>
+    <ul>
+      <li>Much cheaper analysis, and a steady 2-second update rate on any machine.</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-head">
+      <span class="release-version">1.1.0</span>
+      <span class="release-status">First public release</span>
     </div>
+  </div>
 
-    <h2 id="pitchpeek">PitchPeek</h2>
+</main>
 
-    <div class="release">
-      <div class="release-head">
-        <span class="release-version">1.1.0</span>
-        <span class="release-status release-pending">Pending store review</span>
-      </div>
-      <ul>
-        <li>Says <strong>&ldquo;no clear pitch&rdquo;</strong> on material with no tuning to find — percussion, speech, field recordings — instead of listening indefinitely.</li>
-        <li>Faster analysis.</li>
-      </ul>
-    </div>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="release-version">1.0.0</span>
-        <span class="release-status">First public release</span>
-      </div>
-    </div>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="logo.svg" alt="" width="22" height="22">
-        <span>GroovePeek &amp; PitchPeek</span>
-      </div>
-      <a href="privacy.html">GroovePeek Privacy</a>
-      <a href="pitchpeek-privacy.html">PitchPeek Privacy</a>
-    </div>
-  </footer>
+<footer>
+  <p><a href="groovepeek.html">&larr; Back to GroovePeek</a> &middot; <a href="pitchpeek-changelog.html">PitchPeek changelog</a></p>
+</footer>
 
 </body>
 </html>

@@ -9,14 +9,19 @@ Served at **https://damfernandes.github.io/groovepeek-docs/**
 - `index.html` — hub introducing both extensions
 - `groovepeek.html` — GroovePeek (BPM detection)
 - `pitchpeek.html` — PitchPeek (tuning reference)
-- `changelog.html` — release history for both extensions; the single source of
-  truth, deliberately **not** duplicated as a CHANGELOG.md in the extension repo
+- `changelog.html` — GroovePeek release history
+- `pitchpeek-changelog.html` — PitchPeek release history
 - `privacy.html` — GroovePeek privacy policy
 - `pitchpeek-privacy.html` — PitchPeek privacy policy
 - `styles.css` — shared styles
 
 `privacy.html`, `pitchpeek-privacy.html`, and the site root are registered on
 the live Chrome Web Store listings, so **their paths must not change**.
+
+The two changelog pages are the single source of release history — the extension
+repo deliberately carries no `CHANGELOG.md`, so a release updates the page here.
+Each product page links its own from the version badge and the footer; they are
+kept out of the nav, like the privacy pages.
 
 ## Screenshots
 

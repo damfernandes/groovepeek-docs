@@ -220,6 +220,13 @@ a:hover { text-decoration: underline; }
   margin-left: 2px;
 }
 
+/* The badge doubles as the way into that product's changelog. */
+a.eyebrow-version { text-decoration: none; transition: background var(--t-fast), border-color var(--t-fast); }
+a.eyebrow-version:hover {
+  background: rgba(255, 107, 107, 0.2);
+  border-color: rgba(255, 107, 107, 0.45);
+}
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.25; }
@@ -694,10 +701,6 @@ footer a:hover { color: var(--accent); }
 
 .prose ul { padding-left: 20px; }
 
-/* .prose was written for the privacy pages, which carry no nav. On a .prose page
-   that DOES have one, the nav is position: fixed and would sit over the heading. */
-.prose.under-nav { margin-top: 112px; }
-
 /* --- Changelog releases ------------------------------------------------- */
 
 .release {
@@ -706,13 +709,11 @@ footer a:hover { color: var(--accent); }
   margin-top: 30px;
 }
 
-/* .prose h2 already draws a rule beneath the product name — the first release
-   under it would otherwise stack a second one directly below. */
-.prose h2 + .release {
-  border-top: 0;
-  padding-top: 0;
-  margin-top: 18px;
-}
+.release:first-of-type { border-top: 0; padding-top: 0; }
+/* A release block ends on a badge with no trailing margin, unlike the privacy
+   pages which end on a paragraph — without this the footer rule sits right
+   under the last version number. */
+.release:last-of-type { margin-bottom: 52px; }
 
 .release-head {
   display: flex;
@@ -844,15 +845,6 @@ footer a:hover { color: var(--accent); }
 @media (max-width: 560px) {
   .nav-links { gap: 14px; margin-right: 14px; }
   .nav-links a { font-size: 0.82rem; }
-}
-
-/* A Changelog link joined the two product links, and at phone widths the three
-   ran flush to the right edge with the wordmark beside them. Below this width
-   the mark carries the branding on its own. */
-@media (max-width: 430px) {
-  .nav-logo span { display: none; }
-  .nav-links { gap: 12px; margin-right: 0; }
-  .nav-links a { font-size: 0.8rem; }
 }
 
 /* ─── Hub ───────────────────────────────────────────────────── */

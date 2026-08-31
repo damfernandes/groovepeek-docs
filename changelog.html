@@ -41,20 +41,18 @@
 
       <h3>Added</h3>
       <ul>
-        <li><strong>&times;2 and &divide;2 buttons for octave errors.</strong> The characteristic tempo error is an octave — half or double the real value, which happens when a busy guitar or a strong off-beat looks more periodic than the beat itself. Two buttons under the number now correct it directly. They only change the number on screen: GroovePeek keeps measuring what it measured, nothing is remembered between sessions, and the correction is dropped when the song changes.</li>
-        <li><strong>The beat pulse is phase-locked.</strong> It now lands on the song's actual beats rather than merely running at the right rate. Each analysis pass reports the timestamp of a real beat and the popup re-anchors to it, nudging small errors, snapping when it drifts past a quarter of a beat, and falling back to free-running when the anchor goes stale.</li>
+        <li><strong>&times;2 and &divide;2 buttons</strong> to fix a reading that lands an octave off. Display only — it does not change what the detector measured, and it resets with the song.</li>
+        <li>The beat pulse now locks to the song's <strong>actual beats</strong>, not just its tempo.</li>
       </ul>
 
       <h3>Fixed</h3>
       <ul>
-        <li><strong>Song changes were missed on YouTube tabs showing a notification count.</strong> A title like <code>(3) Song Name - YouTube</code> did not match the previous title, so the reading did not reset when the track actually changed. The count prefix is now ignored.</li>
+        <li>Track changes were missed on YouTube tabs showing a notification count, like <code>(3) Song Name</code>.</li>
       </ul>
 
       <h3>Faster</h3>
       <ul>
-        <li>The magnitude spectrum is computed with a real-input FFT, packing the samples into a half-size complex transform.</li>
-        <li>FFT cost in the detection loop cut by 7.8&times;.</li>
-        <li>The analysis cadence is pinned at 2 seconds. It previously slept a flat interval <em>after</em> each analysis, which made the real period depend on how fast your machine was — and quietly retuned the confidence trajectory along with it.</li>
+        <li>Much cheaper analysis, and a steady 2-second update rate on any machine.</li>
       </ul>
     </div>
 
@@ -63,9 +61,6 @@
         <span class="release-version">1.1.0</span>
         <span class="release-status">First public release</span>
       </div>
-      <ul>
-        <li>GroovePeek's first release on the Chrome Web Store.</li>
-      </ul>
     </div>
 
     <h2 id="pitchpeek">PitchPeek</h2>
@@ -75,15 +70,9 @@
         <span class="release-version">1.1.0</span>
         <span class="release-status release-pending">Pending store review</span>
       </div>
-
-      <h3>Added</h3>
       <ul>
-        <li><strong>It now says when it cannot measure.</strong> Some material has no tuning reference to find at all — percussion, spoken word, field recordings, heavily processed sound. Previously that looked identical to still warming up: a spinner and a dash, indefinitely. Once PitchPeek has listened long enough and still cannot place the pitch, it says so and stops the spinner. No number is shown and no confidence is invented; it simply stops pretending to still be working.</li>
-      </ul>
-
-      <h3>Faster</h3>
-      <ul>
-        <li>The same real-input FFT applies to PitchPeek's larger analysis window.</li>
+        <li>Says <strong>&ldquo;no clear pitch&rdquo;</strong> on material with no tuning to find — percussion, speech, field recordings — instead of listening indefinitely.</li>
+        <li>Faster analysis.</li>
       </ul>
     </div>
 
@@ -92,9 +81,6 @@
         <span class="release-version">1.0.0</span>
         <span class="release-status">First public release</span>
       </div>
-      <ul>
-        <li>PitchPeek's first release on the Chrome Web Store.</li>
-      </ul>
     </div>
 
   </main>

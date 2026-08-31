@@ -693,6 +693,79 @@ footer a:hover { color: var(--accent); }
 }
 
 .prose ul { padding-left: 20px; }
+
+/* .prose was written for the privacy pages, which carry no nav. On a .prose page
+   that DOES have one, the nav is position: fixed and would sit over the heading. */
+.prose.under-nav { margin-top: 112px; }
+
+/* --- Changelog releases ------------------------------------------------- */
+
+.release {
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  margin-top: 30px;
+}
+
+/* .prose h2 already draws a rule beneath the product name — the first release
+   under it would otherwise stack a second one directly below. */
+.prose h2 + .release {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 18px;
+}
+
+.release-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.release-version {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.release-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* Shipped but not yet approved: the docs site deploys the moment this merges,
+   while a store listing takes days to review. Saying "released" here before the
+   store agrees would be wrong on a public page for the length of that window. */
+.release-pending {
+  color: var(--accent);
+  border-color: rgba(255, 107, 107, 0.35);
+}
+
+.prose .release h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 20px 0 6px;
+}
+
+.prose .release code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
 .prose li { margin-top: 6px; }
 .prose a  { color: var(--accent); }
 
@@ -771,6 +844,15 @@ footer a:hover { color: var(--accent); }
 @media (max-width: 560px) {
   .nav-links { gap: 14px; margin-right: 14px; }
   .nav-links a { font-size: 0.82rem; }
+}
+
+/* A Changelog link joined the two product links, and at phone widths the three
+   ran flush to the right edge with the wordmark beside them. Below this width
+   the mark carries the branding on its own. */
+@media (max-width: 430px) {
+  .nav-logo span { display: none; }
+  .nav-links { gap: 12px; margin-right: 0; }
+  .nav-links a { font-size: 0.8rem; }
 }
 
 /* ─── Hub ───────────────────────────────────────────────────── */

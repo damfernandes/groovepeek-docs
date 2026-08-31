@@ -9,6 +9,8 @@ Served at **https://damfernandes.github.io/groovepeek-docs/**
 - `index.html` — hub introducing both extensions
 - `groovepeek.html` — GroovePeek (BPM detection)
 - `pitchpeek.html` — PitchPeek (tuning reference)
+- `changelog.html` — release history for both extensions; the single source of
+  truth, deliberately **not** duplicated as a CHANGELOG.md in the extension repo
 - `privacy.html` — GroovePeek privacy policy
 - `pitchpeek-privacy.html` — PitchPeek privacy policy
 - `styles.css` — shared styles

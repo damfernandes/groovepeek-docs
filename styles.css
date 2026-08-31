@@ -427,7 +427,19 @@ main {
   gap: 10px;
 }
 
-@media (max-width: 560px) { .states-grid { grid-template-columns: 1fr; } }
+/* Opt-in 4-up row. The 3-column default is shared with GroovePeek's states
+   grid, so widening it there is not an option — PitchPeek adds a fourth state
+   (no clear pitch) and asks for the extra column explicitly. */
+.states-grid.states-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 860px) { .states-grid.states-4 { grid-template-columns: repeat(2, 1fr); } }
+
+/* .states-4 outranks the bare .states-grid selector, so it has to be named here
+   too — otherwise the 4-column rule survives into the single-column breakpoint. */
+@media (max-width: 560px) {
+  .states-grid,
+  .states-grid.states-4 { grid-template-columns: 1fr; }
+}
 
 .state-card {
   background: var(--surface);

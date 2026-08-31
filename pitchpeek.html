@@ -42,7 +42,7 @@
       <div class="hero-eyebrow">
         <span class="eyebrow-dot"></span>
         Chrome Extension
-        <span class="eyebrow-version">v1.0.0</span>
+        <span class="eyebrow-version">v1.1.0</span>
       </div>
       <h1>Is this really<br>at&nbsp;A=440?</h1>
       <p class="hero-lead">Play a recording. PitchPeek listens to the tab, measures how far its tonal content sits from the equal-tempered grid, and tells you the reference pitch it settled on.</p>
@@ -107,7 +107,7 @@
     <section class="states-section">
       <div class="section-label">How a reading settles</div>
       <h2 class="section-heading">It listens first,<br>then commits</h2>
-      <div class="states-grid">
+      <div class="states-grid states-4">
 
         <div class="state-card state-mid">
           <img class="state-shot" src="store-assets/pp-state-converging.png" alt="PitchPeek popup showing 440 Hz with a Getting a read label" />
@@ -133,6 +133,14 @@
           </div>
         </div>
 
+        <div class="state-card">
+          <img class="state-shot" src="store-assets/pp-state-unmeasurable.png" alt="PitchPeek popup showing a dash instead of a frequency, with a No clear pitch status and the detail Not enough tonal content to measure" />
+          <div class="state-caption">
+            <strong>No clear pitch</strong>
+            <span>Listened long enough, and says so</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -147,6 +155,7 @@
         <strong>How accurate is it, honestly</strong>
         <p>The reading is content-dependent. Instruments produce overtones that don't sit on the equal-tempered grid — a fifth harmonic lands about 14 cents flat of one — so in sparse or overtone-heavy passages those partials can pull the estimate a little off the true reference. Expect roughly ±13 cents on real material, sometimes more on sparse recordings.</p>
         <p>That's good enough to separate a 432 Hz recording from a 440 Hz one with confidence, and to answer "why does this sound flat?". Distinctions smaller than that — 440 against 442, say — sit inside the margin, so read the cents and treat them as an indication rather than a verdict. It is not a substitute for a hardware tuner on a single sustained note.</p>
+        <p>Some material has no tuning reference to find at all — percussion, spoken word, field recordings, heavily processed sound. Rather than sit on a spinner forever, PitchPeek now says so: once it has integrated a full stretch of audio and still cannot place the pitch, it reports <strong>no clear pitch</strong> and stops pretending to still be working. That is a different statement from the margin above — not &ldquo;this reading may be a few cents off&rdquo; but &ldquo;there is not enough tonal content here to measure&rdquo;.</p>
       </div>
     </section>
 
